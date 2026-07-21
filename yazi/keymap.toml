@@ -1,0 +1,9 @@
+[[mgr.prepend_keymap]]
+on = "<Enter>"
+run = "plugin smart-enter"
+desc = "Smart enter"
+
+[[mgr.prepend_keymap]]
+on   = "C"
+run  = "shell 'cat \"$1\" | wl-copy' --confirm"
+desc = "Copy file contents to clipboard"

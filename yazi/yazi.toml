@@ -1,0 +1,23 @@
+[mgr]
+ratio = [1, 3, 4]
+show_hidden = false
+sort_by = "natural"
+sort_sensitive = false
+sort_reverse = false
+sort_dir_first = true
+linemode = "size"
+[preview]
+tab_size = 4
+max_width = 1200
+max_height = 1800
+[header]
+show = false
+hiddein = true
+[opener]
+edit = [
+    { run = 'nvim "$@"', block = true }
+]
+[open]
+prepend_rules = [
+    { mime = "text/*", use = "edit" }
+]

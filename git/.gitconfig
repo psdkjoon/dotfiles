@@ -1,0 +1,13 @@
+[alias]
+	lg = log --oneline --graph --all --decorate
+[user]
+	name = psdkjoon
+	email = psdkjoon@gmail.com
+[init]
+	defaultBranch = main
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
