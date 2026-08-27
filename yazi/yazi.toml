@@ -1,23 +1,36 @@
+[[plugin.prepend_fetchers]]
+url   = "*"
+run   = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+url   = "*/"
+run   = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+url   = "local://*"
+run   = "mime-ext.local"
+prio  = "high"
+group = "mime"
+
+[[plugin.prepend_fetchers]]
+url   = "remote://*"
+run   = "mime-ext.remote"
+prio  = "high"
+group = "mime"
+
+[[plugin.prepend_previewers]]
+url = "*.tar*"
+run = 'piper --format=url -- tar tf "$1"'
+
+[[plugin.prepend_previewers]]
+url = "*.csv"
+run = 'piper -- bat -p --color=always "$1"'
+
+[[plugin.prepend_previewers]]
+url = "*.md"
+run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"'
+
 [mgr]
-ratio = [1, 3, 4]
-show_hidden = false
-sort_by = "natural"
-sort_sensitive = false
-sort_reverse = false
-sort_dir_first = true
-linemode = "size"
-[preview]
-tab_size = 4
-max_width = 1200
-max_height = 1800
-[header]
-show = false
-hiddein = true
-[opener]
-edit = [
-    { run = 'nvim "$@"', block = true }
-]
-[open]
-prepend_rules = [
-    { mime = "text/*", use = "edit" }
-]
+ratio          = [ 0, 4, 2 ]
