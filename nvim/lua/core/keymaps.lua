@@ -3,6 +3,9 @@ local M = {}
 local runner = require("core.runner")
 local keymap = vim.keymap
 local ui = vim.ui
+local lsp = vim.lsp
+local diag = vim.diagnostic
+local api = vim.api
 
 keymap.set({ "n", "i", "v" }, "<F2>", function()
 	runner.run()
@@ -78,5 +81,18 @@ function M.nvim_tree_on_attach(bufnr)
 	keymap.set("n", "<Right>", api.node.open.edit, opts("Expand folder / open file"))
 	keymap.set("n", "<Left>", api.node.navigate.parent_close, opts("Collapse folder / go to parent"))
 end
+
+keymap.set("n", "gl", diag.open_float, { desc = "Open diagnostics floating" })
+keymap.set("n", "gd", lsp.buf.definition, { desc = "Go to Definition" })
+keymap.set({ "n", "v", "i" }, "<C-.>", lsp.buf.code_action, { desc = "LSP Code Actions (Quick Fix)" })
+keymap.set("n", "K", function()
+	lsp.buf.hover({ border = "rounded" })
+end, { desc = "Show Hover Documentation" })
+api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+	group = api.nvim_create_augroup("float_diagnostic", { clear = true }),
+	callback = function()
+		diag.open_float(nil, { focus = false, border = "rounded", scope = "cursor" })
+	end,
+})
 
 return M

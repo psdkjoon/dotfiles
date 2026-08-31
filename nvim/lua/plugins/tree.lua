@@ -9,7 +9,7 @@ return {
 				side = "left",
 			},
 			renderer = {
-				group_empty = true,
+				group_empty = false,
 				highlight_git = true,
 				icons = {
 					show = {

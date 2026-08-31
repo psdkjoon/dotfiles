@@ -21,6 +21,7 @@ return {
 					"jsonls",
 					"dartls",
 					"rust_analyzer",
+					"gh_actions_ls",
 				},
 				all = {
 					"tree-sitter-cli",
@@ -38,6 +39,7 @@ return {
 					"ts_ls",
 					"jsonls",
 					"rust_analyzer",
+					"gh_actions_ls",
 				},
 			}
 			require("mason").setup({ ui = { border = "rounded" } })
