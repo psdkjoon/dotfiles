@@ -1,4 +1,13 @@
-require("options")
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+require("core.options")
+require("core.keymaps")
+require("core.commands")
+require("core.runner")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -15,9 +24,6 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.o.timeout = true
 vim.o.timeoutlen = 500
-
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 require("lazy").setup("plugins", {
 	ui = {
