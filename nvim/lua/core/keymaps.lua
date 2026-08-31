@@ -4,11 +4,11 @@ local runner = require("core.runner")
 local keymap = vim.keymap
 local ui = vim.ui
 
-keymap.set("n", "<F2>", function()
+keymap.set({ "n", "i", "v" }, "<F2>", function()
 	runner.run()
 end, { desc = "Run file / project" })
 
-keymap.set("n", "<F3>", function()
+keymap.set({ "n", "i", "v" }, "<F3>", function()
 	ui.input({ prompt = "Flags: " }, function(input)
 		if input ~= nil then
 			runner.run(input)
@@ -16,11 +16,11 @@ keymap.set("n", "<F3>", function()
 	end)
 end, { desc = "Run file / project with flags" })
 
-keymap.set("n", "<F4>", function()
+keymap.set({ "n", "i", "v" }, "<F4>", function()
 	runner.stop()
 end, { desc = "Stop running job" })
 
-keymap.set("n", "<leader>rt", function()
+keymap.set({ "n", "i", "v" }, "<leader>rt", function()
 	runner.toggle_window()
 end, { desc = "Toggle runner terminal window" })
 
@@ -32,15 +32,15 @@ keymap.set("n", "<leader>fc", function()
 	require("telescope.builtin").live_grep({ default_text = "-- \\|// \\|# " })
 end, { desc = "Find Comments" })
 
-keymap.set("n", "<leader>ffn", function()
+keymap.set("n", "<leader>fn", function()
 	require("telescope.builtin").treesitter({ symbols = { "function" } })
 end, { desc = "Find Functions" })
 
-keymap.set("n", "<leader>fmt", function()
+keymap.set("n", "<leader>fm", function()
 	require("telescope.builtin").treesitter({ symbols = { "method" } })
 end, { desc = "Find Methods" })
 
-keymap.set("n", "<leader>fcl", function()
+keymap.set("n", "<leader>fl", function()
 	require("telescope.builtin").treesitter({ symbols = { "class" } })
 end, { desc = "Find Classes" })
 
@@ -51,6 +51,10 @@ end, { desc = "Find Files" })
 keymap.set("n", "<leader>fh", function()
 	require("telescope.builtin").find_files({ hidden = true })
 end, { desc = "Find Files (hidden)" })
+
+keymap.set("n", "<leader>gh", function()
+	require("telescope.builtin").git_bcommits()
+end, { desc = "File history (Telescope)" })
 
 keymap.set("n", "<C-Left>", "<C-w>h", { desc = "Move to window left" })
 keymap.set("n", "<C-Down>", "<C-w>j", { desc = "Move to window below" })

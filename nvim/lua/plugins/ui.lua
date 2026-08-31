@@ -153,6 +153,9 @@ return {
 				dashboard.button("r", "  Recent Files", function()
 					require("telescope.builtin").oldfiles()
 				end),
+				dashboard.button("c", "  Old Commits", function()
+					require("telescope.builtin").git_bcommits()
+				end),
 				dashboard.button("g", "  Git Status", function()
 					require("telescope.builtin").git_status()
 				end),
