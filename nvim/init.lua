@@ -5,7 +5,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 require("core.options")
-require("core.keymaps")
 require("core.commands")
 require("core.runner")
 
@@ -30,3 +29,5 @@ require("lazy").setup("plugins", {
 		border = "rounded",
 	},
 })
+
+require("core.keymaps")

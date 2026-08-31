@@ -61,6 +61,7 @@ return {
 					lualine_y = { { "diff", source = diff_source } },
 					lualine_z = { "location" },
 				},
+				extensions = { "nvim-tree" },
 			})
 		end,
 	},

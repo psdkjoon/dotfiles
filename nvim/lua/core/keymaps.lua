@@ -1,3 +1,5 @@
+local M = {}
+
 local runner = require("core.runner")
 local keymap = vim.keymap
 local ui = vim.ui
@@ -49,3 +51,28 @@ end, { desc = "Find Files" })
 keymap.set("n", "<leader>fh", function()
 	require("telescope.builtin").find_files({ hidden = true })
 end, { desc = "Find Files (hidden)" })
+
+keymap.set("n", "<C-Left>", "<C-w>h", { desc = "Move to window left" })
+keymap.set("n", "<C-Down>", "<C-w>j", { desc = "Move to window below" })
+keymap.set("n", "<C-Up>", "<C-w>k", { desc = "Move to window above" })
+keymap.set("n", "<C-Right>", "<C-w>l", { desc = "Move to window right" })
+
+keymap.set("n", "<C-n>", function()
+	require("nvim-tree.api").tree.toggle()
+end, { desc = "Toggle NvimTree" })
+
+function M.nvim_tree_on_attach(bufnr)
+	local api = require("nvim-tree.api")
+	api.config.mappings.default_on_attach(bufnr)
+	local function opts(desc)
+		return { desc = "NvimTree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+	end
+
+	keymap.set("n", "a", api.fs.create, opts("Create file/folder"))
+	keymap.set("n", "r", api.fs.rename, opts("Rename"))
+	keymap.set("n", "<CR>", api.node.open.edit, opts("Open file/folder"))
+	keymap.set("n", "<Right>", api.node.open.edit, opts("Expand folder / open file"))
+	keymap.set("n", "<Left>", api.node.navigate.parent_close, opts("Collapse folder / go to parent"))
+end
+
+return M

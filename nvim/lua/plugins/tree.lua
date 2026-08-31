@@ -20,13 +20,13 @@ return {
 					},
 					glyphs = {
 						git = {
-							unstaged = "✗",
-							staged = "✓",
-							unmerged = "",
-							renamed = "➜",
-							untracked = "★",
-							deleted = "",
-							ignored = "◌",
+							unstaged = "󰏬 ",
+							staged = "󱗜 ",
+							unmerged = "󱎙 ",
+							renamed = "󰑕 ",
+							untracked = "󰀧 ",
+							deleted = "󰍵 ",
+							ignored = "󰎃 ",
 						},
 					},
 				},
@@ -53,7 +53,9 @@ return {
 			update_focused_file = {
 				enable = true,
 			},
-			on_attach = function() end,
+			on_attach = function(bufnr)
+				require("core.keymaps").nvim_tree_on_attach(bufnr)
+			end,
 		})
 
 		local min_width = 100
@@ -63,6 +65,24 @@ return {
 					local cur_win = vim.api.nvim_get_current_win()
 					require("nvim-tree.api").tree.open()
 					vim.api.nvim_set_current_win(cur_win)
+				end
+			end,
+		})
+		vim.api.nvim_create_autocmd("QuitPre", {
+			nested = true,
+			callback = function()
+				local wins = vim.api.nvim_list_wins()
+				local tree_wins = {}
+				for _, w in ipairs(wins) do
+					local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(w))
+					if bufname:match("NvimTree_") ~= nil then
+						table.insert(tree_wins, w)
+					end
+				end
+				if #tree_wins == #wins - 1 then
+					for _, w in ipairs(tree_wins) do
+						pcall(vim.api.nvim_win_close, w, true)
+					end
 				end
 			end,
 		})
