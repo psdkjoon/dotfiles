@@ -1,5 +1,4 @@
 require("full-border"):setup()
-require("term-cwd"):setup()
 require("git"):setup({
 	order = 1500,
 })
