@@ -19,7 +19,7 @@ return {
 					"cssls",
 					"ts_ls",
 					"jsonls",
-					"dartls",
+					-- "dartls",
 					"rust_analyzer",
 					"gh_actions_ls",
 				},

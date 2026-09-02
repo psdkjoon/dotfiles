@@ -82,6 +82,50 @@ function M.nvim_tree_on_attach(bufnr)
 	keymap.set("n", "<Left>", api.node.navigate.parent_close, opts("Collapse folder / go to parent"))
 end
 
+api.nvim_create_autocmd("FileType", {
+	pattern = "dart",
+	group = api.nvim_create_augroup("flutter_keymaps", { clear = true }),
+	callback = function(ev)
+		local fopts = { buffer = ev.buf }
+
+		keymap.set("n", "<F5>", "<cmd>FlutterRun<CR>", vim.tbl_extend("force", fopts, { desc = "Flutter Run" }))
+		keymap.set("n", "<F6>", "<cmd>FlutterRestart<CR>", vim.tbl_extend("force", fopts, { desc = "Flutter Restart" }))
+		keymap.set("n", "<F7>", "<cmd>FlutterReload<CR>", vim.tbl_extend("force", fopts, { desc = "Flutter Hot Reload" }))
+
+		keymap.set("n", "<F8>", "<cmd>FlutterQuit<CR>", vim.tbl_extend("force", fopts, { desc = "Flutter Quit" }))
+		keymap.set(
+			"n",
+			"<leader>fD",
+			"<cmd>FlutterDevices<CR>",
+			vim.tbl_extend("force", fopts, { desc = "Flutter Devices" })
+		)
+		keymap.set(
+			"n",
+			"<leader>fE",
+			"<cmd>FlutterEmulators<CR>",
+			vim.tbl_extend("force", fopts, { desc = "Flutter Emulators" })
+		)
+		keymap.set(
+			"n",
+			"<leader>fo",
+			"<cmd>FlutterOutlineToggle<CR>",
+			vim.tbl_extend("force", fopts, { desc = "Flutter Outline" })
+		)
+		keymap.set(
+			"n",
+			"<leader>fp",
+			"<cmd>FlutterPubGet<CR>",
+			vim.tbl_extend("force", fopts, { desc = "Flutter Pub Get" })
+		)
+		keymap.set(
+			"n",
+			"<leader>fv",
+			"<cmd>FlutterDevTools<CR>",
+			vim.tbl_extend("force", fopts, { desc = "Flutter DevTools" })
+		)
+	end,
+})
+
 keymap.set("n", "gl", diag.open_float, { desc = "Open diagnostics floating" })
 keymap.set("n", "gd", lsp.buf.definition, { desc = "Go to Definition" })
 keymap.set({ "n", "v", "i" }, "<C-.>", lsp.buf.code_action, { desc = "LSP Code Actions (Quick Fix)" })
