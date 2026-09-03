@@ -90,7 +90,12 @@ api.nvim_create_autocmd("FileType", {
 
 		keymap.set("n", "<F5>", "<cmd>FlutterRun<CR>", vim.tbl_extend("force", fopts, { desc = "Flutter Run" }))
 		keymap.set("n", "<F6>", "<cmd>FlutterRestart<CR>", vim.tbl_extend("force", fopts, { desc = "Flutter Restart" }))
-		keymap.set("n", "<F7>", "<cmd>FlutterReload<CR>", vim.tbl_extend("force", fopts, { desc = "Flutter Hot Reload" }))
+		keymap.set(
+			"n",
+			"<F7>",
+			"<cmd>FlutterReload<CR>",
+			vim.tbl_extend("force", fopts, { desc = "Flutter Hot Reload" })
+		)
 
 		keymap.set("n", "<F8>", "<cmd>FlutterQuit<CR>", vim.tbl_extend("force", fopts, { desc = "Flutter Quit" }))
 		keymap.set(
@@ -138,5 +143,17 @@ api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 		diag.open_float(nil, { focus = false, border = "rounded", scope = "cursor" })
 	end,
 })
+
+vim.keymap.set({ "n", "v" }, "<C-.>", vim.lsp.buf.code_action, { desc = "LSP Code Actions (Quick Fix)" })
+
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+	group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
+	callback = function()
+		vim.diagnostic.open_float(nil, { focus = false, border = "rounded", scope = "cursor" })
+	end,
+})
+
+vim.keymap.set("v", "<", "<gv", { desc = "Indent left, keep selection" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent right, keep selection" })
 
 return M
