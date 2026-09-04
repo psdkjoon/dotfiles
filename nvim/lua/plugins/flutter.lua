@@ -26,6 +26,12 @@ return {
 				},
 			},
 			widget_guides = { enabled = true },
+			dev_log = {
+				open_cmd = "rightbelow 5vnew",
+			},
+			outline = {
+				open_cmd = "rightbelow 5vnew",
+			},
 			closing_tags = {
 				highlight = "Comment",
 				prefix = "// ",

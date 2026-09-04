@@ -27,31 +27,19 @@ keymap.set({ "n", "i", "v" }, "<leader>rt", function()
 	runner.toggle_window()
 end, { desc = "Toggle runner terminal window" })
 
-keymap.set("n", "<leader>fd", function()
+keymap.set("n", "<leader>gd", function()
 	require("telescope.builtin").diagnostics()
 end, { desc = "Diagnostics" })
 
-keymap.set("n", "<leader>fc", function()
+keymap.set("n", "<leader>gc", function()
 	require("telescope.builtin").live_grep({ default_text = "-- \\|// \\|# " })
 end, { desc = "Find Comments" })
 
-keymap.set("n", "<leader>fn", function()
-	require("telescope.builtin").treesitter({ symbols = { "function" } })
-end, { desc = "Find Functions" })
-
-keymap.set("n", "<leader>fm", function()
-	require("telescope.builtin").treesitter({ symbols = { "method" } })
-end, { desc = "Find Methods" })
-
-keymap.set("n", "<leader>fl", function()
-	require("telescope.builtin").treesitter({ symbols = { "class" } })
-end, { desc = "Find Classes" })
-
-keymap.set("n", "<leader>ff", function()
+keymap.set("n", "<leader>gf", function()
 	require("telescope.builtin").find_files()
 end, { desc = "Find Files" })
 
-keymap.set("n", "<leader>fh", function()
+keymap.set("n", "<leader>gi", function()
 	require("telescope.builtin").find_files({ hidden = true })
 end, { desc = "Find Files (hidden)" })
 
@@ -63,6 +51,16 @@ keymap.set("n", "<C-Left>", "<C-w>h", { desc = "Move to window left" })
 keymap.set("n", "<C-Down>", "<C-w>j", { desc = "Move to window below" })
 keymap.set("n", "<C-Up>", "<C-w>k", { desc = "Move to window above" })
 keymap.set("n", "<C-Right>", "<C-w>l", { desc = "Move to window right" })
+
+keymap.set("v", "<C-Left>", "<C-w>h", { desc = "Move to window left" })
+keymap.set("v", "<C-Down>", "<C-w>j", { desc = "Move to window below" })
+keymap.set("v", "<C-Up>", "<C-w>k", { desc = "Move to window above" })
+keymap.set("v", "<C-Right>", "<C-w>l", { desc = "Move to window right" })
+
+keymap.set("i", "<C-Left>", "<Esc><C-w>hi", { desc = "Move to window left" })
+keymap.set("i", "<C-Down>", "<Esc><C-w>ji", { desc = "Move to window below" })
+keymap.set("i", "<C-Up>", "<Esc><C-w>ki", { desc = "Move to window above" })
+keymap.set("i", "<C-Right>", "<Esc><C-w>li", { desc = "Move to window right" })
 
 keymap.set("n", "<C-n>", function()
 	require("nvim-tree.api").tree.toggle()
@@ -100,13 +98,13 @@ api.nvim_create_autocmd("FileType", {
 		keymap.set("n", "<F8>", "<cmd>FlutterQuit<CR>", vim.tbl_extend("force", fopts, { desc = "Flutter Quit" }))
 		keymap.set(
 			"n",
-			"<leader>fD",
+			"<leader>fd",
 			"<cmd>FlutterDevices<CR>",
 			vim.tbl_extend("force", fopts, { desc = "Flutter Devices" })
 		)
 		keymap.set(
 			"n",
-			"<leader>fE",
+			"<leader>fe",
 			"<cmd>FlutterEmulators<CR>",
 			vim.tbl_extend("force", fopts, { desc = "Flutter Emulators" })
 		)
@@ -155,5 +153,7 @@ vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left, keep selection" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right, keep selection" })
+
+keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
 
 return M

@@ -5,7 +5,7 @@ return {
 	config = function()
 		require("nvim-tree").setup({
 			view = {
-				width = 32,
+				width = 25,
 				side = "left",
 			},
 			renderer = {
@@ -58,7 +58,7 @@ return {
 			end,
 		})
 
-		local min_width = 100
+		local min_width = 200
 		vim.api.nvim_create_autocmd("VimEnter", {
 			callback = function()
 				if vim.o.columns >= min_width then

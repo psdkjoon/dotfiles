@@ -43,26 +43,15 @@ return {
 				end, { "i", "s" }),
 				["<C-Space>"] = cmp.mapping.complete(),
 			},
-			formatting = {
-				format = function(entry, vim_item)
-					if entry.source.name == "nvim_lsp" and vim_item.kind == "Text" then
-						return nil
-					end
-					return vim_item
-				end,
-			},
 			sources = cmp.config.sources({
-				{ name = "nvim_lsp", priority = 1000 },
 				{
-					name = "path",
-					priority = 500,
-					option = {
-						get_bufnrs = function()
-							return {}
-						end,
-						trigger_characters = { "/", "./", "../" },
-					},
+					name = "nvim_lsp",
+					priority = 1000,
+					entry_filter = function(entry, ctx)
+						return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
+					end,
 				},
+				{ name = "path", priority = 500 },
 			}),
 		})
 	end,
