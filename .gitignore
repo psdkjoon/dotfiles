@@ -30,6 +30,7 @@
 !mpv/**
 !nvim/
 !nvim/**
+nvim/lazy-lock.json
 !oh-my-posh/
 !oh-my-posh/**
 !qt5ct/
