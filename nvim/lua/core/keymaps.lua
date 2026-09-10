@@ -67,17 +67,17 @@ keymap.set("n", "<C-n>", function()
 end, { desc = "Toggle NvimTree" })
 
 function M.nvim_tree_on_attach(bufnr)
-	local api = require("nvim-tree.api")
-	api.config.mappings.default_on_attach(bufnr)
+	local tapi = require("nvim-tree.api")
+	tapi.config.mappings.default_on_attach(bufnr)
 	local function opts(desc)
 		return { desc = "NvimTree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
 	end
 
-	keymap.set("n", "a", api.fs.create, opts("Create file/folder"))
-	keymap.set("n", "r", api.fs.rename, opts("Rename"))
-	keymap.set("n", "<CR>", api.node.open.edit, opts("Open file/folder"))
-	keymap.set("n", "<Right>", api.node.open.edit, opts("Expand folder / open file"))
-	keymap.set("n", "<Left>", api.node.navigate.parent_close, opts("Collapse folder / go to parent"))
+	keymap.set("n", "a", tapi.fs.create, opts("Create file/folder"))
+	keymap.set("n", "r", tapi.fs.rename, opts("Rename"))
+	keymap.set("n", "<CR>", tapi.node.open.edit, opts("Open file/folder"))
+	keymap.set("n", "<Right>", tapi.node.open.edit, opts("Expand folder / open file"))
+	keymap.set("n", "<Left>", tapi.node.navigate.parent_close, opts("Collapse folder / go to parent"))
 end
 
 api.nvim_create_autocmd("FileType", {
