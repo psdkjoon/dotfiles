@@ -75,7 +75,7 @@ return {
 					RRGGBB = true,
 					names = false,
 					RRGGBBAA = false,
-					AARRGGBB = false,
+					AARRGGBB = true,
 					rgb_fn = true,
 					hsl_fn = true,
 					css = true,

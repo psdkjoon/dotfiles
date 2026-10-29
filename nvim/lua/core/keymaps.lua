@@ -126,6 +126,27 @@ api.nvim_create_autocmd("FileType", {
 			"<cmd>FlutterDevTools<CR>",
 			vim.tbl_extend("force", fopts, { desc = "Flutter DevTools" })
 		)
+
+		local function dmap(lhs, rhs, desc)
+			keymap.set("n", lhs, rhs, { buffer = ev.buf, desc = desc })
+		end
+		dmap("<leader>dc", "<cmd>DartDataClass<CR>", "Dart: data class (ctor/copyWith/==/toString)")
+		dmap("<leader>dC", "<cmd>DartDataClass all<CR>", "Dart: data class + toMap/fromMap/json")
+		dmap("<leader>ip", "<cmd>DartImagePreview<CR>", "Dart: preview image asset on line")
+		dmap("<leader>pa", function()
+			ui.input({ prompt = "pub add: " }, function(input)
+				if input and input ~= "" then
+					vim.cmd("PubAdd " .. input)
+				end
+			end)
+		end, "Pub: add package")
+		dmap("<leader>pd", function()
+			ui.input({ prompt = "pub add --dev: " }, function(input)
+				if input and input ~= "" then
+					vim.cmd("PubAddDev " .. input)
+				end
+			end)
+		end, "Pub: add dev package")
 	end,
 })
 
@@ -142,14 +163,32 @@ api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 	end,
 })
 
-vim.keymap.set({ "n", "v" }, "<C-.>", vim.lsp.buf.code_action, { desc = "LSP Code Actions (Quick Fix)" })
+keymap.set("n", "<leader>/", "gcc", { remap = true, desc = "Toggle comment line" })
+keymap.set("x", "<leader>/", "gc", { remap = true, desc = "Toggle comment selection" })
 
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-	group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
-	callback = function()
-		vim.diagnostic.open_float(nil, { focus = false, border = "rounded", scope = "cursor" })
-	end,
-})
+keymap.set({ "n", "x" }, "<leader>ca", lsp.buf.code_action, { desc = "Code action / quick fix" })
+keymap.set({ "n", "x" }, "<leader>cr", function()
+	lsp.buf.code_action({ context = { only = { "refactor" } } })
+end, { desc = "Refactor (extract widget/method/variable, wrap with widget...)" })
+keymap.set("n", "<leader>rn", lsp.buf.rename, { desc = "Rename symbol (updates imports)" })
+keymap.set("n", "<leader>cf", function()
+	require("conform").format({ async = true, lsp_format = "fallback" })
+end, { desc = "Format buffer" })
+keymap.set("n", "<leader>cx", function()
+	require("core.dart.fix").code_action_sync(0, "source.fixAll", 3000)
+end, { desc = "Fix all auto-fixable (const, unused imports...)" })
+keymap.set("n", "<leader>co", function()
+	require("core.dart.fix").code_action_sync(0, "source.organizeImports", 3000)
+end, { desc = "Organize imports" })
+keymap.set("n", "gr", function()
+	require("telescope.builtin").lsp_references()
+end, { desc = "References" })
+keymap.set("n", "gi", function()
+	require("telescope.builtin").lsp_implementations()
+end, { desc = "Implementations" })
+keymap.set("n", "<leader>ss", function()
+	require("telescope.builtin").lsp_document_symbols()
+end, { desc = "Document symbols" })
 
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left, keep selection" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right, keep selection" })

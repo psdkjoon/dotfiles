@@ -6,28 +6,38 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("gnome-keyring-daemon --start --components=pkcs11,secrets,ssh")
 	hl.exec_cmd("fcitx5 -d")
 	hl.exec_cmd("lxqt-policykit-agent")
+	hl.exec_cmd("pray --tray")
 end)
-
-hl.monitor({
-	output = "eDP-1",
-	mode = "preferred",
-	position = "auto",
-	scale = "0.83",
-})
 
 hl.monitor({
 	output = "HDMI-A-1",
 	mode = "preferred",
 	position = "0x0",
-	scale = "0.83",
+	scale = "0.8",
 	transform = 0,
 })
 
 hl.monitor({
-	output = "DP-1",
+	output = "HDMI-A-2",
+	mode = "preferred",
+	position = "0x0",
+	scale = "0.8",
+	transform = 0,
+})
+
+hl.monitor({
+	output = "DP-2",
 	mode = "preferred",
 	position = "2313x-970",
-	scale = "0.83",
+	scale = "0.8",
+	transform = 1,
+})
+
+hl.monitor({
+	output = "eDP-1",
+	mode = "preferred",
+	position = "2313x-970",
+	scale = "0.8",
 	transform = 1,
 })
 
@@ -38,6 +48,7 @@ local lock = "hyprlock"
 local colorpicker = "hyprpicker -a"
 local nc = "swaync-client -t"
 local menu = "hyprlauncher"
+local music = "kitty -e rmpc"
 
 local mainMod = "SUPER"
 
@@ -177,6 +188,12 @@ hl.config({
 })
 
 hl.config({
+	xwayland = {
+		force_zero_scaling = false,
+	},
+})
+
+hl.config({
 	misc = {
 		force_default_wallpaper = -1,
 		disable_hyprland_logo = false,
@@ -214,6 +231,7 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(lock))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(colorpicker))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(nc))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(music))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("Telegram"))
 
 hl.bind(mainMod .. " + X", hl.dsp.window.close())

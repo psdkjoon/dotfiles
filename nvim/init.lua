@@ -7,6 +7,9 @@ vim.g.maplocalleader = " "
 require("core.options")
 require("core.commands")
 require("core.runner")
+require("core.better_comments").setup()
+require("core.dart").setup()
+require("core.flutter_colors").setup()
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then

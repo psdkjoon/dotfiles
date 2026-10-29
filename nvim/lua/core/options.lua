@@ -34,8 +34,6 @@ api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 
--- Autosave: write the buffer after edits / when leaving it, if it's a real,
--- modifiable, named file.
 api.nvim_create_autocmd({ "InsertLeave", "TextChanged", "BufLeave", "FocusLost" }, {
 	group = api.nvim_create_augroup("autosave", { clear = true }),
 	callback = function(ev)
@@ -47,9 +45,11 @@ api.nvim_create_autocmd({ "InsertLeave", "TextChanged", "BufLeave", "FocusLost" 
 			and vim.api.nvim_buf_get_name(buf) ~= ""
 			and vim.bo[buf].modified
 		then
+			vim.g.autosave_event = ev.event
 			vim.api.nvim_buf_call(buf, function()
 				vim.cmd("silent! write")
 			end)
+			vim.g.autosave_event = nil
 		end
 	end,
 })

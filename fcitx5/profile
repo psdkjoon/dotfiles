@@ -10,13 +10,13 @@ DefaultIM=keyboard-ir
 # Name
 Name=keyboard-us
 # Layout
-Layout=
+# Layout=
 
 [Groups/0/Items/1]
 # Name
 Name=keyboard-ir
 # Layout
-Layout=
+# Layout=
 
 [GroupOrder]
 0=Default

@@ -1,0 +1,507 @@
+{
+  "impm": {
+    "prefix": "impm",
+    "description": "import flutter material",
+    "body": [
+      "import 'package:flutter/material.dart';"
+    ]
+  },
+  "impc": {
+    "prefix": "impc",
+    "description": "import flutter cupertino",
+    "body": [
+      "import 'package:flutter/cupertino.dart';"
+    ]
+  },
+  "mainf": {
+    "prefix": "mainf",
+    "description": "main() with runApp",
+    "body": [
+      "void main() {",
+      "  runApp(const ${1:MyApp}());",
+      "}"
+    ]
+  },
+  "stless": {
+    "prefix": "stless",
+    "description": "StatelessWidget",
+    "body": [
+      "class ${1:Name} extends StatelessWidget {",
+      "  const $1({super.key});",
+      "",
+      "  @override",
+      "  Widget build(BuildContext context) {",
+      "    return ${2:const Placeholder()};",
+      "  }",
+      "}"
+    ]
+  },
+  "stful": {
+    "prefix": "stful",
+    "description": "StatefulWidget + State",
+    "body": [
+      "class ${1:Name} extends StatefulWidget {",
+      "  const $1({super.key});",
+      "",
+      "  @override",
+      "  State<$1> createState() => _$1State();",
+      "}",
+      "",
+      "class _$1State extends State<$1> {",
+      "  @override",
+      "  Widget build(BuildContext context) {",
+      "    return ${2:const Placeholder()};",
+      "  }",
+      "}"
+    ]
+  },
+  "stanim": {
+    "prefix": "stanim",
+    "description": "StatefulWidget with AnimationController",
+    "body": [
+      "class ${1:Name} extends StatefulWidget {",
+      "  const $1({super.key});",
+      "",
+      "  @override",
+      "  State<$1> createState() => _$1State();",
+      "}",
+      "",
+      "class _$1State extends State<$1> with SingleTickerProviderStateMixin {",
+      "  late final AnimationController _controller;",
+      "",
+      "  @override",
+      "  void initState() {",
+      "    super.initState();",
+      "    _controller = AnimationController(",
+      "      vsync: this,",
+      "      duration: const Duration(milliseconds: ${2:300}),",
+      "    );",
+      "  }",
+      "",
+      "  @override",
+      "  void dispose() {",
+      "    _controller.dispose();",
+      "    super.dispose();",
+      "  }",
+      "",
+      "  @override",
+      "  Widget build(BuildContext context) {",
+      "    return ${3:const Placeholder()};",
+      "  }",
+      "}"
+    ]
+  },
+  "mateapp": {
+    "prefix": "mateapp",
+    "description": "MaterialApp",
+    "body": [
+      "class ${1:MyApp} extends StatelessWidget {",
+      "  const $1({super.key});",
+      "",
+      "  @override",
+      "  Widget build(BuildContext context) {",
+      "    return MaterialApp(",
+      "      title: '${2:App}',",
+      "      theme: ThemeData(useMaterial3: true),",
+      "      home: const ${3:HomePage}(),",
+      "    );",
+      "  }",
+      "}"
+    ]
+  },
+  "scaffold": {
+    "prefix": "scaffold",
+    "description": "Scaffold",
+    "body": [
+      "Scaffold(",
+      "  appBar: AppBar(title: const Text('${1:Title}')),",
+      "  body: ${2:const Placeholder()},",
+      ")"
+    ]
+  },
+  "initS": {
+    "prefix": "initS",
+    "description": "initState",
+    "body": [
+      "@override",
+      "void initState() {",
+      "  super.initState();",
+      "  $0",
+      "}"
+    ]
+  },
+  "dis": {
+    "prefix": "dis",
+    "description": "dispose",
+    "body": [
+      "@override",
+      "void dispose() {",
+      "  $0",
+      "  super.dispose();",
+      "}"
+    ]
+  },
+  "didChangeD": {
+    "prefix": "didChangeD",
+    "description": "didChangeDependencies",
+    "body": [
+      "@override",
+      "void didChangeDependencies() {",
+      "  super.didChangeDependencies();",
+      "  $0",
+      "}"
+    ]
+  },
+  "didUpdateW": {
+    "prefix": "didUpdateW",
+    "description": "didUpdateWidget",
+    "body": [
+      "@override",
+      "void didUpdateWidget(covariant ${1:Widget} oldWidget) {",
+      "  super.didUpdateWidget(oldWidget);",
+      "  $0",
+      "}"
+    ]
+  },
+  "build": {
+    "prefix": "build",
+    "description": "build override",
+    "body": [
+      "@override",
+      "Widget build(BuildContext context) {",
+      "  return ${1:const Placeholder()};",
+      "}"
+    ]
+  },
+  "setS": {
+    "prefix": "setS",
+    "description": "setState",
+    "body": [
+      "setState(() {",
+      "  $0",
+      "});"
+    ]
+  },
+  "column": {
+    "prefix": "column",
+    "description": "Column",
+    "body": [
+      "Column(",
+      "  children: [",
+      "    $0",
+      "  ],",
+      ")"
+    ]
+  },
+  "row": {
+    "prefix": "row",
+    "description": "Row",
+    "body": [
+      "Row(",
+      "  children: [",
+      "    $0",
+      "  ],",
+      ")"
+    ]
+  },
+  "stack": {
+    "prefix": "stack",
+    "description": "Stack",
+    "body": [
+      "Stack(",
+      "  children: [",
+      "    $0",
+      "  ],",
+      ")"
+    ]
+  },
+  "container": {
+    "prefix": "container",
+    "description": "Container",
+    "body": [
+      "Container(",
+      "  padding: const EdgeInsets.all(${1:8}),",
+      "  child: ${2:const SizedBox.shrink()},",
+      ")"
+    ]
+  },
+  "center": {
+    "prefix": "center",
+    "description": "Center",
+    "body": [
+      "Center(",
+      "  child: $0,",
+      ")"
+    ]
+  },
+  "padding": {
+    "prefix": "padding",
+    "description": "Padding",
+    "body": [
+      "Padding(",
+      "  padding: const EdgeInsets.all(${1:8}),",
+      "  child: $0,",
+      ")"
+    ]
+  },
+  "expanded": {
+    "prefix": "expanded",
+    "description": "Expanded",
+    "body": [
+      "Expanded(",
+      "  child: $0,",
+      ")"
+    ]
+  },
+  "sizedBox": {
+    "prefix": "sizedBox",
+    "description": "SizedBox",
+    "body": [
+      "SizedBox(",
+      "  width: ${1:16},",
+      "  height: ${2:16},",
+      "  child: $0,",
+      ")"
+    ]
+  },
+  "safeArea": {
+    "prefix": "safeArea",
+    "description": "SafeArea",
+    "body": [
+      "SafeArea(",
+      "  child: $0,",
+      ")"
+    ]
+  },
+  "singleChildScrollView": {
+    "prefix": "singleChildScrollView",
+    "description": "SingleChildScrollView",
+    "body": [
+      "SingleChildScrollView(",
+      "  child: $0,",
+      ")"
+    ]
+  },
+  "listViewB": {
+    "prefix": "listViewB",
+    "description": "ListView.builder",
+    "body": [
+      "ListView.builder(",
+      "  itemCount: ${1:items}.length,",
+      "  itemBuilder: (context, index) {",
+      "    final item = $1[index];",
+      "    return ${2:ListTile(title: Text(item.toString()))};",
+      "  },",
+      ")"
+    ]
+  },
+  "listViewS": {
+    "prefix": "listViewS",
+    "description": "ListView.separated",
+    "body": [
+      "ListView.separated(",
+      "  itemCount: ${1:items}.length,",
+      "  separatorBuilder: (context, index) => const Divider(),",
+      "  itemBuilder: (context, index) {",
+      "    return ${2:const Placeholder()};",
+      "  },",
+      ")"
+    ]
+  },
+  "gridViewB": {
+    "prefix": "gridViewB",
+    "description": "GridView.builder",
+    "body": [
+      "GridView.builder(",
+      "  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(",
+      "    crossAxisCount: ${1:2},",
+      "  ),",
+      "  itemCount: ${2:items}.length,",
+      "  itemBuilder: (context, index) {",
+      "    return ${3:const Placeholder()};",
+      "  },",
+      ")"
+    ]
+  },
+  "futureBldr": {
+    "prefix": "futureBldr",
+    "description": "FutureBuilder",
+    "body": [
+      "FutureBuilder<${1:Type}>(",
+      "  future: ${2:future},",
+      "  builder: (context, snapshot) {",
+      "    if (snapshot.connectionState != ConnectionState.done) {",
+      "      return const Center(child: CircularProgressIndicator());",
+      "    }",
+      "    if (snapshot.hasError) {",
+      "      return Center(child: Text('Error: ' + snapshot.error.toString()));",
+      "    }",
+      "    final data = snapshot.data;",
+      "    return ${3:const Placeholder()};",
+      "  },",
+      ")"
+    ]
+  },
+  "streamBldr": {
+    "prefix": "streamBldr",
+    "description": "StreamBuilder",
+    "body": [
+      "StreamBuilder<${1:Type}>(",
+      "  stream: ${2:stream},",
+      "  builder: (context, snapshot) {",
+      "    if (!snapshot.hasData) {",
+      "      return const Center(child: CircularProgressIndicator());",
+      "    }",
+      "    final data = snapshot.data;",
+      "    return ${3:const Placeholder()};",
+      "  },",
+      ")"
+    ]
+  },
+  "valueListenableBuilder": {
+    "prefix": "valueListenableBuilder",
+    "description": "ValueListenableBuilder",
+    "body": [
+      "ValueListenableBuilder<${1:Type}>(",
+      "  valueListenable: ${2:notifier},",
+      "  builder: (context, value, child) {",
+      "    return ${3:const Placeholder()};",
+      "  },",
+      ")"
+    ]
+  },
+  "layoutBuilder": {
+    "prefix": "layoutBuilder",
+    "description": "LayoutBuilder",
+    "body": [
+      "LayoutBuilder(",
+      "  builder: (context, constraints) {",
+      "    return ${1:const Placeholder()};",
+      "  },",
+      ")"
+    ]
+  },
+  "elevatedButton": {
+    "prefix": "elevatedButton",
+    "description": "ElevatedButton",
+    "body": [
+      "ElevatedButton(",
+      "  onPressed: () {",
+      "    $0",
+      "  },",
+      "  child: const Text('${1:Label}'),",
+      ")"
+    ]
+  },
+  "textButton": {
+    "prefix": "textButton",
+    "description": "TextButton",
+    "body": [
+      "TextButton(",
+      "  onPressed: () {",
+      "    $0",
+      "  },",
+      "  child: const Text('${1:Label}'),",
+      ")"
+    ]
+  },
+  "iconButton": {
+    "prefix": "iconButton",
+    "description": "IconButton",
+    "body": [
+      "IconButton(",
+      "  onPressed: () {",
+      "    $0",
+      "  },",
+      "  icon: const Icon(Icons.${1:add}),",
+      ")"
+    ]
+  },
+  "inkWell": {
+    "prefix": "inkWell",
+    "description": "InkWell",
+    "body": [
+      "InkWell(",
+      "  onTap: () {",
+      "    $0",
+      "  },",
+      "  child: ${1:const SizedBox.shrink()},",
+      ")"
+    ]
+  },
+  "gestureDetector": {
+    "prefix": "gestureDetector",
+    "description": "GestureDetector",
+    "body": [
+      "GestureDetector(",
+      "  onTap: () {",
+      "    $0",
+      "  },",
+      "  child: ${1:const SizedBox.shrink()},",
+      ")"
+    ]
+  },
+  "textFormField": {
+    "prefix": "textFormField",
+    "description": "TextFormField",
+    "body": [
+      "TextFormField(",
+      "  controller: ${1:controller},",
+      "  decoration: const InputDecoration(labelText: '${2:Label}'),",
+      "  validator: (value) {",
+      "    if (value == null || value.isEmpty) return 'Required';",
+      "    return null;",
+      "  },",
+      ")"
+    ]
+  },
+  "navPush": {
+    "prefix": "navPush",
+    "description": "Navigator.push",
+    "body": [
+      "Navigator.of(context).push(",
+      "  MaterialPageRoute<void>(builder: (context) => const ${1:Page}()),",
+      ");"
+    ]
+  },
+  "navPop": {
+    "prefix": "navPop",
+    "description": "Navigator.pop",
+    "body": [
+      "Navigator.of(context).pop();"
+    ]
+  },
+  "showDialogFn": {
+    "prefix": "showDialogFn",
+    "description": "showDialog",
+    "body": [
+      "showDialog<void>(",
+      "  context: context,",
+      "  builder: (context) => AlertDialog(",
+      "    title: const Text('${1:Title}'),",
+      "    content: const Text('${2:Message}'),",
+      "    actions: [",
+      "      TextButton(",
+      "        onPressed: () => Navigator.of(context).pop(),",
+      "        child: const Text('OK'),",
+      "      ),",
+      "    ],",
+      "  ),",
+      ");"
+    ]
+  },
+  "mediaQuery": {
+    "prefix": "mediaQuery",
+    "description": "MediaQuery size",
+    "body": [
+      "final size = MediaQuery.sizeOf(context);"
+    ]
+  },
+  "themeOf": {
+    "prefix": "themeOf",
+    "description": "Theme.of",
+    "body": [
+      "final theme = Theme.of(context);"
+    ]
+  }
+}

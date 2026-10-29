@@ -60,7 +60,12 @@ menu {
 }
 
 #workspaces {
-  padding: 0px;
+  margin-right: 15px;
+  border-radius: 0px 10px 10px 0px;
+}
+
+#workspaces:first-child {
+  border-radius: 10px;
 }
 
 #workspaces button {
@@ -90,6 +95,13 @@ menu {
   font-family: "JetBrainsMono NFP ExtraBold";
   font-size: 20px;
   color: #f2cdcd;
+  margin-left: 15px;
+  border-radius: 10px 0px 0px 10px;
+}
+
+#mpris {
+  font-family: "JetBrainsMono NFP ExtraBold";
+  color: #89b4fa;
   border-radius: 0px 10px 10px 0px;
 }
 

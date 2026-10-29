@@ -1,0 +1,14 @@
+{
+  "name": "flutter-snippets",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "dart",
+        "path": "./dart.json"
+      }
+    ]
+  }
+}

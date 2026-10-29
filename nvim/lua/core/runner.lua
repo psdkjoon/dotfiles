@@ -23,7 +23,7 @@ end
 
 local function close_existing()
 	stop_running_job()
-	if is_valid_win(state.win) then
+	if is_valid_win(state.win) and #vim.api.nvim_tabpage_list_wins(0) > 1 then
 		pcall(vim.api.nvim_win_close, state.win, true)
 	end
 	if is_valid_buf(state.buf) then
@@ -38,13 +38,23 @@ local function open_terminal(cmd)
 
 	vim.cmd("botright split")
 	state.win = vim.api.nvim_get_current_win()
-	vim.cmd("vertical resize 90")
+	vim.cmd("resize 20")
 
-	local ok, job_id = pcall(vim.fn.termopen, cmd, {
-		on_exit = function()
-			state.job_id = nil
-		end,
-	})
+	local ok, job_id
+	if vim.fn.has("nvim-0.11") == 1 then
+		ok, job_id = pcall(vim.fn.jobstart, cmd, {
+			term = true,
+			on_exit = function()
+				state.job_id = nil
+			end,
+		})
+	else
+		ok, job_id = pcall(vim.fn.termopen, cmd, {
+			on_exit = function()
+				state.job_id = nil
+			end,
+		})
+	end
 
 	state.buf = vim.api.nvim_get_current_buf()
 
@@ -83,9 +93,9 @@ local project_runners = {
 		if pubspec ~= "" then
 			local content = vim.fn.readfile(pubspec)
 			for _, line in ipairs(content) do
-				if line:match("^%s*flutter:%s*$") or line:match("flutter:") then
+				if line:match("^%s*flutter:%s*$") then
 					vim.notify(
-						"This looks like a Flutter project. Use <leader>Fr to run with hot reload.",
+						"This looks like a Flutter project. Use <F5> (FlutterRun) to run with hot reload.",
 						vim.log.levels.INFO
 					)
 					return nil
@@ -163,7 +173,9 @@ end
 
 function M.toggle_window()
 	if is_valid_win(state.win) then
-		vim.api.nvim_win_close(state.win, true)
+		if #vim.api.nvim_tabpage_list_wins(0) > 1 then
+			vim.api.nvim_win_close(state.win, true)
+		end
 		state.win = nil
 		return
 	end
